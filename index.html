@@ -3,53 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>by.nailia - Nail Art Studio</title>
+    <title>by.nailia | Nail Art Studio</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
-    <header>
-        <h1>by.nailia</h1>
-        <p>Studio Nail Art yang Bagus dan Menarik</p>
-    </header>
-    
-    <div class="container">
-        <section class="section">
-            <h2>Koleksi Nail Art Kami</h2>
-            <div class="nail-art-gallery">
-                <div class="nail-art-item">
-                    <img src="https://via.placeholder.com/300x200?text=Nail+Art+1" alt="Nail Art 1">
-                    <h3>Desain Minimalis</h3>
-                    <p>Desain sederhana namun elegan untuk tampilan sehari-hari.</p>
-                </div>
-                <div class="nail-art-item">
-                    <img src="https://via.placeholder.com/300x200?text=Nail+Art+2" alt="Nail Art 2">
-                    <h3>Desain Glamour</h3>
-                    <p>Untuk acara spesial, dengan glitter dan motif mewah.</p>
-                </div>
-                <div class="nail-art-item">
-                    <img src="https://via.placeholder.com/300x200?text=Nail+Art+3" alt="Nail Art 3">
-                    <h3>Desain Boho Chic</h3>
-                    <p>Gaya bohemian yang bebas dan kreatif.</p>
-                </div>
-                <div class="nail-art-item">
-                    <img src="https://via.placeholder.com/300x200?text=Nail+Art+4" alt="Nail Art 4">
-                    <h3>Desain Neon</h3>
-                    <p>Warna-warni cerah untuk suasana energik.</p>
-                </div>
-            </div>
-        </section>
-        
-        <section class="section contact">
-            <h2>Hubungi Kami</h2>
-            <p><strong>WhatsApp:</strong> 0895-3345-98900</p>
-            <p><strong>Instagram:</strong> @by.nailia</p>
-            <p><strong>Alamat:</strong> Jl. Werkudoro, Sefan, Maguwoharjo, Kec. Depok, Kabupaten Sleman, Daerah Istimewa Yogyakarta 55281 (by.nailia studio)</p>
-            <a href="https://wa.me/0895334598900?text=Halo%20by.nailia,%20saya%20ingin%20booking%20appointment%20untuk%20nail%20art." class="booking-btn" target="_blank">Book Appointment via WhatsApp</a>
-        </section>
+
+<!-- NAVBAR -->
+<header class="navbar">
+    <div class="logo">by<span>.nailia</span></div>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#services">Layanan</a>
+        <a href="#gallery">Galeri</a>
+        <a href="#contact">Kontak</a>
+    </nav>
+    <a href="https://wa.me/62895334598900" target="_blank" class="btn-gold">
+        Reservasi
+    </a>
+</header>
+
+<!-- HERO -->
+<section id="home" class="hero">
+    <div class="hero-content">
+        <h1>Seni Kecantikan<br><span>di Ujung Jari</span></h1>
+        <p>
+            by.nailia adalah studio nail art profesional dengan sentuhan elegan,
+            modern, dan detail sempurna untuk menunjang penampilanmu.
+        </p>
+        <div class="hero-btn">
+            <a href="https://wa.me/62895334598900" target="_blank" class="btn-gold">
+                Booking via WhatsApp
+            </a>
+            <a href="https://instagram.com/by.nailia" target="_blank" class="btn-outline">
+                Instagram
+            </a>
+        </div>
     </div>
-    
-    <footer>
-        <p>&copy; 2023 by.nailia. Semua hak dilindungi.</p>
-    </footer>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="section">
+    <h2>Layanan Kami</h2>
+    <div class="services">
+        <div class="card">
+            <h3>Manicure & Pedicure</h3>
+            <p>Perawatan kuku menyeluruh untuk hasil bersih, sehat, dan rapi.</p>
+        </div>
+        <div class="card">
+            <h3>Gel Polish</h3>
+            <p>Warna tahan lama dengan hasil glossy dan premium.</p>
+        </div>
+        <div class="card">
+            <h3>Custom Nail Art</h3>
+            <p>Desain sesuai keinginan, dari minimalis hingga glam look.</p>
+        </div>
+    </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="section dark">
+    <h2>Galeri Karya</h2>
+    <div class="gallery">
+        <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=800&auto=format&fit=crop">
+        <img src="https://images.unsplash.com/photo-1599695669265-27a36f556942?q=80&w=800&auto=format&fit=crop">
+        <img src="https://images.unsplash.com/photo-1632973547721-e85d46e30891?q=80&w=800&auto=format&fit=crop">
+        <img src="https://images.unsplash.com/photo-1522337360705-8763d39a8204?q=80&w=800&auto=format&fit=crop">
+    </div>
+</section>
+
+<!-- CONTACT -->
+<footer id="contact" class="footer">
+    <h3>by<span>.nailia</span></h3>
+
+    <p>
+        Jl. Werkudoro, Sefan, Maguwoharjo<br>
+        Kec. Depok, Kabupaten Sleman<br>
+        Daerah Istimewa Yogyakarta 55281
+    </p>
+
+    <div class="contact">
+        <a href="https://wa.me/62895334598900" target="_blank">
+            <i data-lucide="phone"></i> 0895-3345-98900
+        </a>
+        <a href="https://instagram.com/by.nailia" target="_blank">
+            <i data-lucide="instagram"></i> @by.nailia
+        </a>
+    </div>
+
+    <p class="copyright">
+        © 2024 by.nailia Studio • All Rights Reserved
+    </p>
+</footer>
+
+<script>
+    lucide.createIcons();
+</script>
+
 </body>
 </html>
