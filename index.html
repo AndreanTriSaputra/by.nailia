@@ -3,227 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lumina Nail Art Studio</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        .font-serif {
-            font-family: 'Playfair Display', serif;
-        }
-        
-        /* Animasi Blob Background */
-        @keyframes blob {
-            0% { transform: translate(0px, 0px) scale(1); }
-            33% { transform: translate(30px, -50px) scale(1.1); }
-            66% { transform: translate(-20px, 20px) scale(0.9); }
-            100% { transform: translate(0px, 0px) scale(1); }
-        }
-        .animate-blob {
-            animation: blob 7s infinite;
-        }
-        .animation-delay-2000 {
-            animation-delay: 2s;
-        }
-        .animation-delay-4000 {
-            animation-delay: 4s;
-        }
-
-        /* Smooth Scroll */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Custom Transition */
-        .nav-transition {
-            transition: all 0.3s ease;
-        }
-    </style>
+    <title>by.nailia | Nail Art Studio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-rose-50/30 text-gray-800">
+<body>
 
-    <!-- Navbar -->
-    <nav id="navbar" class="fixed w-full z-50 nav-transition py-6 bg-transparent">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <div class="text-2xl font-serif font-bold text-rose-900 tracking-wide cursor-pointer">
-                Lumina<span class="text-rose-500">.</span>
-            </div>
+    <header>
+        <h1>by.nailia</h1>
+        <p>Beautiful Nails, Beautiful You</p>
+    </header>
 
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex space-x-8 items-center">
-                <a href="#beranda" class="text-gray-600 hover:text-rose-600 font-medium transition-colors">Beranda</a>
-                <a href="#layanan" class="text-gray-600 hover:text-rose-600 font-medium transition-colors">Layanan</a>
-                <a href="#galeri" class="text-gray-600 hover:text-rose-600 font-medium transition-colors">Galeri</a>
-                <a href="#ulasan" class="text-gray-600 hover:text-rose-600 font-medium transition-colors">Ulasan</a>
-                <button class="px-6 py-2 bg-rose-500 hover:bg-rose-600 text-white rounded-full transition-all transform hover:scale-105 shadow-lg shadow-rose-200 text-sm font-semibold">
-                    Reservasi Sekarang
-                </button>
-            </div>
-
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" class="md:hidden text-gray-700">
-                <i data-lucide="menu" size="28"></i>
-            </button>
-        </div>
-
-        <!-- Mobile Menu Dropdown -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white absolute w-full shadow-xl border-t border-gray-100 p-6 space-y-4">
-            <a href="#beranda" class="block text-gray-700 font-medium py-2 border-b border-gray-50">Beranda</a>
-            <a href="#layanan" class="block text-gray-700 font-medium py-2 border-b border-gray-50">Layanan</a>
-            <a href="#galeri" class="block text-gray-700 font-medium py-2 border-b border-gray-50">Galeri</a>
-            <a href="#ulasan" class="block text-gray-700 font-medium py-2 border-b border-gray-50">Ulasan</a>
-            <button class="w-full py-3 bg-rose-500 text-white rounded-lg mt-4 font-semibold">
-                Reservasi via WhatsApp
-            </button>
-        </div>
+    <nav>
+        <a href="#about">Tentang</a>
+        <a href="#gallery">Galeri</a>
+        <a href="#services">Layanan</a>
+        <a href="#contact">Kontak</a>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="beranda" class="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden">
-        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-rose-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-        <div class="absolute top-0 left-0 -ml-20 -mt-20 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
-        <div class="absolute -bottom-32 left-20 w-96 h-96 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+    <section id="about">
+        <h2>Tentang by.nailia</h2>
+        <p>
+            by.nailia adalah layanan nail art yang menghadirkan desain kuku
+            elegan, modern, dan trendi. Mengutamakan kualitas, kebersihan,
+            serta detail untuk hasil yang memuaskan.
+        </p>
+    </section>
 
-        <div class="container mx-auto px-6 relative z-10 text-center">
-            <div class="inline-block px-4 py-1.5 mb-6 rounded-full bg-rose-100 text-rose-600 text-sm font-semibold tracking-wide uppercase">
-                ✨ Seni di Ujung Jari Anda
-            </div>
-            <h1 class="text-5xl md:text-7xl font-serif font-bold text-gray-900 leading-tight mb-6">
-                Pancarkan Cantikmu <br />
-                Mulai dari <span class="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-purple-600">Kuku</span>
-            </h1>
-            <p class="text-lg md:text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-                Studio nail art premium dengan teknik modern, bahan berkualitas, dan seniman kuku berpengalaman untuk menyempurnakan penampilan Anda.
-            </p>
-            <div class="flex flex-col md:flex-row justify-center gap-4">
-                <button class="px-8 py-4 bg-rose-500 hover:bg-rose-600 text-white rounded-full font-semibold text-lg shadow-xl shadow-rose-200 transition-all transform hover:scale-105 flex items-center justify-center gap-2">
-                    Booking Appointment <i data-lucide="arrow-right" size="20"></i>
-                </button>
-                <button class="px-8 py-4 bg-white hover:bg-gray-50 text-gray-800 border border-gray-200 rounded-full font-semibold text-lg transition-all flex items-center justify-center gap-2">
-                    <i data-lucide="instagram" size="20" class="text-rose-500"></i> Lihat Portofolio
-                </button>
-            </div>
+    <section id="gallery">
+        <h2>Galeri Nail Art</h2>
+        <div class="gallery">
+            <div class="card">💅 Nude Nail</div>
+            <div class="card">✨ Glitter Nail</div>
+            <div class="card">🌸 Floral Nail</div>
+            <div class="card">💎 Luxury Nail</div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="layanan" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4">Layanan Kami</h2>
-                <div class="w-20 h-1 bg-rose-500 mx-auto rounded-full"></div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Service 1 -->
-                <div class="group p-8 rounded-2xl bg-rose-50/50 hover:bg-white border border-transparent hover:border-rose-100 hover:shadow-xl transition-all duration-300">
-                    <div class="bg-white w-14 h-14 rounded-full flex items-center justify-center shadow-sm mb-6 group-hover:scale-110 transition-transform text-rose-500">
-                        <i data-lucide="sparkles"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Classic Manicure</h3>
-                    <p class="text-rose-500 font-bold mb-3">IDR 150K</p>
-                    <p class="text-gray-600 text-sm leading-relaxed">Pembersihan kutikula, pembentukan kuku, dan pijatan tangan ringan.</p>
-                </div>
-                <!-- Service 2 -->
-                <div class="group p-8 rounded-2xl bg-rose-50/50 hover:bg-white border border-transparent hover:border-rose-100 hover:shadow-xl transition-all duration-300">
-                    <div class="bg-white w-14 h-14 rounded-full flex items-center justify-center shadow-sm mb-6 group-hover:scale-110 transition-transform text-rose-500">
-                        <i data-lucide="palette"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Gel Polish</h3>
-                    <p class="text-rose-500 font-bold mb-3">IDR 200K</p>
-                    <p class="text-gray-600 text-sm leading-relaxed">Pewarnaan gel tahan lama dengan berbagai pilihan warna premium.</p>
-                </div>
-                <!-- Service 3 -->
-                <div class="group p-8 rounded-2xl bg-rose-50/50 hover:bg-white border border-transparent hover:border-rose-100 hover:shadow-xl transition-all duration-300">
-                    <div class="bg-white w-14 h-14 rounded-full flex items-center justify-center shadow-sm mb-6 group-hover:scale-110 transition-transform text-rose-500">
-                        <i data-lucide="heart"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Custom Nail Art</h3>
-                    <p class="text-rose-500 font-bold mb-3">Mulai IDR 25K</p>
-                    <p class="text-gray-600 text-sm leading-relaxed">Desain artistik sesuai keinginan, mulai dari minimalis hingga 3D art.</p>
-                </div>
-                <!-- Service 4 -->
-                <div class="group p-8 rounded-2xl bg-rose-50/50 hover:bg-white border border-transparent hover:border-rose-100 hover:shadow-xl transition-all duration-300">
-                    <div class="bg-white w-14 h-14 rounded-full flex items-center justify-center shadow-sm mb-6 group-hover:scale-110 transition-transform text-rose-500">
-                        <i data-lucide="star"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Nail Extensions</h3>
-                    <p class="text-rose-500 font-bold mb-3">IDR 350K</p>
-                    <p class="text-gray-600 text-sm leading-relaxed">Perpanjangan kuku dengan Polygel atau Acrylic yang kuat dan natural.</p>
-                </div>
-            </div>
-        </div>
+    <section id="services">
+        <h2>Layanan Kami</h2>
+        <ul>
+            <li>Manicure & Pedicure</li>
+            <li>Custom Nail Art</li>
+            <li>Gel & Acrylic Nail</li>
+            <li>Nail Treatment</li>
+        </ul>
     </section>
 
-    <!-- Gallery Section -->
-    <section id="galeri" class="py-20 bg-rose-900 text-white relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 30px 30px;"></div>
-        <div class="container mx-auto px-6 relative z-10">
-            <h2 class="text-3xl md:text-4xl font-serif font-bold mb-12">Karya Terbaru</h2>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-                <img src="https://images.unsplash.com/photo-1632973547721-e85d46e30891?q=80&w=800&auto=format&fit=crop" class="rounded-xl aspect-square object-cover hover:scale-105 transition-transform duration-500 shadow-lg">
-                <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=800&auto=format&fit=crop" class="rounded-xl aspect-square object-cover hover:scale-105 transition-transform duration-500 shadow-lg">
-                <img src="https://images.unsplash.com/photo-1519017712217-a57921b7e5be?q=80&w=800&auto=format&fit=crop" class="rounded-xl aspect-square object-cover hover:scale-105 transition-transform duration-500 shadow-lg">
-                <img src="https://images.unsplash.com/photo-1522337360705-8763d39a8204?q=80&w=800&auto=format&fit=crop" class="rounded-xl aspect-square object-cover hover:scale-105 transition-transform duration-500 shadow-lg">
-                <img src="https://images.unsplash.com/photo-1599695669265-27a36f556942?q=80&w=800&auto=format&fit=crop" class="rounded-xl aspect-square object-cover hover:scale-105 transition-transform duration-500 shadow-lg">
-                <img src="https://images.unsplash.com/photo-1596919290826-b7d603a11c1d?q=80&w=800&auto=format&fit=crop" class="rounded-xl aspect-square object-cover hover:scale-105 transition-transform duration-500 shadow-lg">
-            </div>
-        </div>
+    <section id="contact">
+        <h2>Hubungi Kami</h2>
+        <p><strong>📍 Alamat:</strong><br>
+        Jl. Werkudoro, Sefan, Maguwoharjo,<br>
+        Kec. Depok, Kabupaten Sleman,<br>
+        Daerah Istimewa Yogyakarta 55281 (By.nailia Studio Maguwoharjo) </p>
+
+        <p><strong>📱 WhatsApp:</strong> 0895-3345-98900</p>
+        <p><strong>📸 Instagram:</strong> @by.nailia</p>
+
+        <a href="https://wa.me/62895334598900" target="_blank">
+            <button>Booking via WhatsApp</button>
+        </a>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-300 py-12">
-        <div class="container mx-auto px-6 text-center">
-            <div class="text-2xl font-serif font-bold text-white mb-4">
-                Lumina<span class="text-rose-500">.</span>
-            </div>
-            <p class="max-w-md mx-auto text-sm mb-8">Studio nail art yang mengutamakan kesehatan kuku dan keindahan seni di setiap detailnya.</p>
-            <div class="flex justify-center space-x-6 mb-8 text-rose-500">
-                <i data-lucide="instagram" class="cursor-pointer hover:text-white transition-colors"></i>
-                <i data-lucide="phone" class="cursor-pointer hover:text-white transition-colors"></i>
-                <i data-lucide="map-pin" class="cursor-pointer hover:text-white transition-colors"></i>
-            </div>
-            <p class="text-xs text-gray-500 border-t border-gray-800 pt-8">&copy; 2024 Lumina Nail Art Studio. All rights reserved.</p>
-        </div>
+    <footer>
+        <p>© 2026 by.nailia | All Rights Reserved</p>
     </footer>
 
-    <script>
-        // Inisialisasi Ikon Lucide
-        lucide.createIcons();
-
-        // Logika Navbar Sticky saat Scroll
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 20) {
-                navbar.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-4');
-                navbar.classList.remove('bg-transparent', 'py-6');
-            } else {
-                navbar.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-4');
-                navbar.classList.add('bg-transparent', 'py-6');
-            }
-        });
-
-        // Logika Menu Mobile
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Menutup menu mobile saat link diklik
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-    </script>
 </body>
 </html>
