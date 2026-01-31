@@ -4,120 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>by.nailia | Nail Art Studio</title>
-
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
+<body>
 
-<body class="bg-rose-50/30 text-gray-800">
+    <header>
+        <h1>by.nailia</h1>
+        <p>Beautiful Nails, Beautiful You</p>
+    </header>
 
-    <!-- Navbar -->
-    <nav id="navbar" class="fixed w-full z-50 nav-transition py-6 bg-transparent">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <div class="text-2xl font-serif font-bold text-rose-900 cursor-pointer">
-                by<span class="text-rose-500">.nailia</span>
-            </div>
-
-            <div class="hidden md:flex space-x-8 items-center">
-                <a href="#beranda" class="nav-link">Beranda</a>
-                <a href="#layanan" class="nav-link">Layanan</a>
-                <a href="#galeri" class="nav-link">Galeri</a>
-                <a href="#kontak" class="nav-link">Kontak</a>
-                <a href="https://wa.me/62895334598900" target="_blank" class="btn-primary">
-                    Reservasi
-                </a>
-            </div>
-
-            <button id="mobile-menu-btn" class="md:hidden text-gray-700">
-                <i data-lucide="menu" size="28"></i>
-            </button>
-        </div>
-
-        <div id="mobile-menu" class="hidden md:hidden bg-white absolute w-full shadow-xl border-t p-6 space-y-4">
-            <a href="#beranda" class="mobile-link">Beranda</a>
-            <a href="#layanan" class="mobile-link">Layanan</a>
-            <a href="#galeri" class="mobile-link">Galeri</a>
-            <a href="#kontak" class="mobile-link">Kontak</a>
-            <a href="https://wa.me/62895334598900" target="_blank" class="btn-primary block text-center">
-                Reservasi via WhatsApp
-            </a>
-        </div>
+    <nav>
+        <a href="#about">Tentang</a>
+        <a href="#gallery">Galeri</a>
+        <a href="#services">Layanan</a>
+        <a href="#contact">Kontak</a>
     </nav>
 
-    <!-- Hero -->
-    <section id="beranda" class="hero-section">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
+    <section id="about">
+        <h2>Tentang by.nailia</h2>
+        <p>
+            by.nailia adalah layanan nail art yang menghadirkan desain kuku
+            elegan, modern, dan trendi. Mengutamakan kualitas, kebersihan,
+            serta detail untuk hasil yang memuaskan.
+        </p>
+    </section>
 
-        <div class="container mx-auto px-6 relative z-10 text-center">
-            <div class="badge">✨ Nail Art Studio</div>
-
-            <h1 class="hero-title">
-                Percantik Dirimu <br>
-                Mulai dari <span class="gradient-text">Kuku</span>
-            </h1>
-
-            <p class="hero-desc">
-                by.nailia menghadirkan nail art modern, rapi, dan tahan lama
-                dengan sentuhan profesional.
-            </p>
-
-            <div class="flex flex-col md:flex-row justify-center gap-4">
-                <a href="https://wa.me/62895334598900" target="_blank"
-                   class="btn-primary flex items-center gap-2">
-                    Booking Sekarang <i data-lucide="arrow-right"></i>
-                </a>
-
-                <a href="https://instagram.com/by.nailia" target="_blank"
-                   class="btn-secondary flex items-center gap-2">
-                    <i data-lucide="instagram" class="text-rose-500"></i>
-                    @by.nailia
-                </a>
-            </div>
+    <section id="gallery">
+        <h2>Galeri Nail Art</h2>
+        <div class="gallery">
+            <div class="card">💅 Nude Nail</div>
+            <div class="card">✨ Glitter Nail</div>
+            <div class="card">🌸 Floral Nail</div>
+            <div class="card">💎 Luxury Nail</div>
         </div>
     </section>
 
-    <!-- Galeri -->
-    <section id="galeri" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-serif font-bold text-center mb-12">
-                Galeri Karya
-            </h2>
-
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-                <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=800&auto=format&fit=crop" class="gallery-img">
-                <img src="https://images.unsplash.com/photo-1599695669265-27a36f556942?q=80&w=800&auto=format&fit=crop" class="gallery-img">
-                <img src="https://images.unsplash.com/photo-1632973547721-e85d46e30891?q=80&w=800&auto=format&fit=crop" class="gallery-img">
-                <img src="https://images.unsplash.com/photo-1522337360705-8763d39a8204?q=80&w=800&auto=format&fit=crop" class="gallery-img">
-                <img src="https://images.unsplash.com/photo-1519017712217-a57921b7e5be?q=80&w=800&auto=format&fit=crop" class="gallery-img">
-                <img src="https://images.unsplash.com/photo-1596919290826-b7d603a11c1d?q=80&w=800&auto=format&fit=crop" class="gallery-img">
-            </div>
-        </div>
+    <section id="services">
+        <h2>Layanan Kami</h2>
+        <ul>
+            <li>Manicure & Pedicure</li>
+            <li>Custom Nail Art</li>
+            <li>Gel & Acrylic Nail</li>
+            <li>Nail Treatment</li>
+        </ul>
     </section>
 
-    <!-- Kontak -->
-    <footer id="kontak" class="bg-gray-900 text-gray-300 py-12 text-center">
-        <div class="text-2xl font-serif font-bold text-white mb-4">
-            by<span class="text-rose-500">.nailia</span>
-        </div>
+    <section id="contact">
+        <h2>Hubungi Kami</h2>
+        <p><strong>📍 Alamat:</strong><br>
+        Jl. Werkudoro, Sefan, Maguwoharjo,<br>
+        Kec. Depok, Kabupaten Sleman,<br>
+        Daerah Istimewa Yogyakarta 55281</p>
 
-        <p class="text-sm mb-2">
-            Jl. Werkudoro, Sefan, Maguwoharjo
-        </p>
-        <p class="text-sm mb-6">
-            Kec. Depok, Kab. Sleman, DI Yogyakarta 55281
-        </p>
+        <p><strong>📱 WhatsApp:</strong> 0895-3345-98900</p>
+        <p><strong>📸 Instagram:</strong> @by.nailia</p>
 
-        <div class="flex justify-center gap-6 text-rose-500 mb-6">
-            <a href="https://instagram.com/by.nailia" target="_blank">
-                <i data-lucide="instagram
+        <a href="https://wa.me/62895334598900" target="_blank">
+            <button>Booking via WhatsApp</button>
+        </a>
+    </section>
+
+    <footer>
+        <p>© 2026 by.nailia | All Rights Reserved</p>
+    </footer>
+
+</body>
+</html>
