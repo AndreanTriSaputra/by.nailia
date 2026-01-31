@@ -1,126 +1,126 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
 body {
-    font-family: 'Inter', sans-serif;
+    background-color: #fff5f8;
+    color: #333;
 }
 
-.font-serif {
-    font-family: 'Playfair Display', serif;
+/* Header */
+header {
+    background: linear-gradient(135deg, #f48fb1, #fbc2d9);
+    text-align: center;
+    padding: 45px 20px;
+    color: white;
 }
 
-.nav-transition {
+header h1 {
+    font-size: 40px;
+    letter-spacing: 1px;
+}
+
+header p {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+/* Navbar */
+nav {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    padding: 15px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+}
+
+nav a {
+    text-decoration: none;
+    color: #ec407a;
+    font-weight: 600;
+}
+
+nav a:hover {
+    color: #c2185b;
+}
+
+/* Section */
+section {
+    padding: 45px 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+section h2 {
+    text-align: center;
+    color: #ec407a;
+    margin-bottom: 25px;
+}
+
+/* Gallery */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 35px;
+    border-radius: 18px;
+    text-align: center;
+    font-size: 18px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
     transition: all 0.3s ease;
 }
 
-.nav-link {
-    color: #4b5563;
-    font-weight: 500;
+.card:hover {
+    transform: translateY(-8px);
 }
 
-.nav-link:hover {
-    color: #e11d48;
+/* Services */
+ul {
+    list-style: none;
+    text-align: center;
 }
 
-.btn-primary {
-    padding: 0.75rem 2rem;
-    background: #f43f5e;
+ul li {
+    background-color: #fde4ec;
+    margin: 12px auto;
+    padding: 14px;
+    width: 65%;
+    border-radius: 12px;
+}
+
+/* Contact */
+#contact {
+    text-align: center;
+}
+
+button {
+    margin-top: 20px;
+    padding: 14px 30px;
+    border: none;
+    background-color: #ec407a;
     color: white;
-    border-radius: 9999px;
-    font-weight: 600;
-    transition: all 0.3s;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
 }
 
-.btn-primary:hover {
-    background: #e11d48;
-    transform: scale(1.05);
+button:hover {
+    background-color: #c2185b;
 }
 
-.btn-secondary {
-    padding: 0.75rem 2rem;
-    border: 1px solid #e5e7eb;
-    border-radius: 9999px;
-    font-weight: 600;
-    background: white;
-}
-
-.hero-section {
-    position: relative;
-    padding: 10rem 0 6rem;
-    overflow: hidden;
-}
-
-.hero-title {
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-}
-
-.hero-desc {
-    max-width: 600px;
-    margin: 0 auto 2.5rem;
-    color: #6b7280;
-}
-
-.gradient-text {
-    background: linear-gradient(to right, #f43f5e, #a855f7);
-    -webkit-background-clip: text;
-    color: transparent;
-}
-
-.badge {
-    display: inline-block;
-    padding: 0.4rem 1rem;
-    background: #ffe4e6;
-    color: #e11d48;
-    border-radius: 9999px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-}
-
-.gallery-img {
-    border-radius: 1rem;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    transition: transform 0.5s;
-}
-
-.gallery-img:hover {
-    transform: scale(1.05);
-}
-
-/* Blob animation */
-@keyframes blob {
-    0% { transform: translate(0,0) scale(1); }
-    33% { transform: translate(30px,-50px) scale(1.1); }
-    66% { transform: translate(-20px,20px) scale(0.9); }
-    100% { transform: translate(0,0) scale(1); }
-}
-
-.blob {
-    position: absolute;
-    width: 24rem;
-    height: 24rem;
-    border-radius: 50%;
-    filter: blur(60px);
-    opacity: 0.3;
-    animation: blob 7s infinite;
-}
-
-.blob-1 {
-    background: #fecdd3;
-    top: -5rem;
-    right: -5rem;
-}
-
-.blob-2 {
-    background: #e9d5ff;
-    top: -5rem;
-    left: -5rem;
-    animation-delay: 2s;
-}
-
-.blob-3 {
-    background: #fbcfe8;
-    bottom: -8rem;
-    left: 5rem;
-    animation-delay: 4s;
+/* Footer */
+footer {
+    background-color: #f48fb1;
+    color: white;
+    text-align: center;
+    padding: 18px;
+    margin-top: 30px;
 }
