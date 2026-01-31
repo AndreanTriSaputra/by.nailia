@@ -1,0 +1,326 @@
+import React, { useState, useEffect } from 'react';
+import { Sparkles, Palette, Clock, Star, Instagram, Phone, MapPin, Menu, X, ArrowRight, Heart, CheckCircle } from 'lucide-react';
+
+const App = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Handle scroll effect for navbar
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    setIsMobileMenuOpen(false);
+  };
+
+  // Data Mockup
+  const services = [
+    {
+      title: "Classic Manicure",
+      price: "IDR 150K",
+      description: "Pembersihan kutikula, pembentukan kuku, dan pijatan tangan ringan.",
+      icon: <Sparkles className="w-6 h-6 text-rose-500" />
+    },
+    {
+      title: "Gel Polish",
+      price: "IDR 200K",
+      description: "Pewarnaan gel tahan lama dengan berbagai pilihan warna premium.",
+      icon: <Palette className="w-6 h-6 text-rose-500" />
+    },
+    {
+      title: "Custom Nail Art",
+      price: "Mulai IDR 25K/jari",
+      description: "Desain artistik sesuai keinginan, mulai dari minimalis hingga 3D art.",
+      icon: <Heart className="w-6 h-6 text-rose-500" />
+    },
+    {
+      title: "Nail Extensions",
+      price: "IDR 350K",
+      description: "Perpanjangan kuku dengan Polygel atau Acrylic yang kuat dan natural.",
+      icon: <Star className="w-6 h-6 text-rose-500" />
+    }
+  ];
+
+  const galleryImages = [
+    "https://images.unsplash.com/photo-1632973547721-e85d46e30891?q=80&w=800&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=800&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1519017712217-a57921b7e5be?q=80&w=800&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1522337360705-8763d39a8204?q=80&w=800&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1599695669265-27a36f556942?q=80&w=800&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1596919290826-b7d603a11c1d?q=80&w=800&auto=format&fit=crop"
+  ];
+
+  const reviews = [
+    { name: "Sinta W.", comment: "Hasilnya rapi banget! Terapisnya ramah dan teliti.", rating: 5 },
+    { name: "Amanda P.", comment: "Nail art-nya awet sampai sebulan lebih. Suka banget sama desainnya.", rating: 5 },
+    { name: "Rina J.", comment: "Tempatnya nyaman dan bersih. Pilihan warnanya lengkap.", rating: 4 }
+  ];
+
+  return (
+    <div className="font-sans text-gray-800 bg-rose-50/30 selection:bg-rose-200">
+      
+      {/* Navbar */}
+      <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'}`}>
+        <div className="container mx-auto px-6 flex justify-between items-center">
+          <div className="text-2xl font-serif font-bold text-rose-900 tracking-wide cursor-pointer" onClick={() => window.scrollTo(0,0)}>
+            Lumina<span className="text-rose-500">.</span>
+          </div>
+
+          {/* Desktop Menu */}
+          <div className="hidden md:flex space-x-8 items-center">
+            {['Beranda', 'Layanan', 'Galeri', 'Ulasan'].map((item) => (
+              <button 
+                key={item}
+                onClick={() => scrollToSection(item.toLowerCase())}
+                className="text-gray-600 hover:text-rose-600 font-medium transition-colors"
+              >
+                {item}
+              </button>
+            ))}
+            <button className="px-6 py-2 bg-rose-500 hover:bg-rose-600 text-white rounded-full transition-all transform hover:scale-105 shadow-lg shadow-rose-200 text-sm font-semibold">
+              Reservasi Sekarang
+            </button>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button className="md:hidden text-gray-700" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
+
+        {/* Mobile Menu Dropdown */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden bg-white absolute w-full shadow-xl border-t border-gray-100">
+            <div className="flex flex-col p-6 space-y-4">
+              {['Beranda', 'Layanan', 'Galeri', 'Ulasan'].map((item) => (
+                <button 
+                  key={item}
+                  onClick={() => scrollToSection(item.toLowerCase())}
+                  className="text-left text-gray-700 font-medium py-2 border-b border-gray-50"
+                >
+                  {item}
+                </button>
+              ))}
+              <button className="w-full py-3 bg-rose-500 text-white rounded-lg mt-4 font-semibold">
+                Reservasi via WhatsApp
+              </button>
+            </div>
+          </div>
+        )}
+      </nav>
+
+      {/* Hero Section */}
+      <section id="beranda" className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden">
+        {/* Abstract Background Shapes */}
+        <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-rose-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+        <div className="absolute top-0 left-0 -ml-20 -mt-20 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+        <div className="absolute -bottom-32 left-20 w-96 h-96 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+
+        <div className="container mx-auto px-6 relative z-10 text-center">
+          <div className="inline-block px-4 py-1.5 mb-6 rounded-full bg-rose-100 text-rose-600 text-sm font-semibold tracking-wide uppercase">
+            ✨ Seni di Ujung Jari Anda
+          </div>
+          <h1 className="text-5xl md:text-7xl font-serif font-bold text-gray-900 leading-tight mb-6">
+            Pancarkan Cantikmu <br />
+            Mulai dari <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-purple-600">Kuku</span>
+          </h1>
+          <p className="text-lg md:text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+            Studio nail art premium dengan teknik modern, bahan berkualitas, dan seniman kuku berpengalaman untuk menyempurnakan penampilan Anda.
+          </p>
+          <div className="flex flex-col md:flex-row justify-center gap-4">
+            <button className="px-8 py-4 bg-rose-500 hover:bg-rose-600 text-white rounded-full font-semibold text-lg shadow-xl shadow-rose-200 transition-all transform hover:scale-105 flex items-center justify-center gap-2">
+              Booking Appointment <ArrowRight size={20} />
+            </button>
+            <button className="px-8 py-4 bg-white hover:bg-gray-50 text-gray-800 border border-gray-200 rounded-full font-semibold text-lg transition-all flex items-center justify-center gap-2">
+              <Instagram size={20} className="text-rose-500" /> Lihat Portofolio
+            </button>
+          </div>
+
+          <div className="mt-16 flex justify-center gap-8 md:gap-16 grayscale opacity-60">
+            <div className="flex items-center gap-2 text-sm font-semibold"><CheckCircle size={16} /> Steril & Bersih</div>
+            <div className="flex items-center gap-2 text-sm font-semibold"><CheckCircle size={16} /> Produk Premium</div>
+            <div className="flex items-center gap-2 text-sm font-semibold"><CheckCircle size={16} /> Garansi 7 Hari</div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section id="layanan" className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4">Layanan Kami</h2>
+            <div className="w-20 h-1 bg-rose-500 mx-auto rounded-full"></div>
+            <p className="mt-4 text-gray-600 max-w-xl mx-auto">Kami menawarkan berbagai perawatan kuku untuk menjaga kesehatan dan keindahan tangan Anda.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {services.map((service, index) => (
+              <div key={index} className="group p-8 rounded-2xl bg-rose-50/50 hover:bg-white border border-transparent hover:border-rose-100 hover:shadow-xl transition-all duration-300">
+                <div className="bg-white w-14 h-14 rounded-full flex items-center justify-center shadow-sm mb-6 group-hover:scale-110 transition-transform">
+                  {service.icon}
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">{service.title}</h3>
+                <p className="text-rose-500 font-bold mb-3">{service.price}</p>
+                <p className="text-gray-600 text-sm leading-relaxed">{service.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Gallery Section */}
+      <section id="galeri" className="py-20 bg-rose-900 text-white relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
+        
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-serif font-bold mb-2">Karya Terbaru</h2>
+              <p className="text-rose-200">Inspirasi desain untuk kunjungan Anda berikutnya.</p>
+            </div>
+            <button className="hidden md:flex items-center gap-2 text-white border-b border-rose-400 pb-1 hover:text-rose-200 transition-colors mt-6 md:mt-0">
+              Lihat Semua di Instagram <ArrowRight size={16} />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+            {galleryImages.map((img, idx) => (
+              <div key={idx} className={`relative group overflow-hidden rounded-xl aspect-square ${idx === 0 || idx === 3 ? 'md:col-span-1' : ''}`}>
+                <img 
+                  src={img} 
+                  alt={`Nail Art ${idx + 1}`} 
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <span className="text-white font-medium border border-white px-4 py-2 rounded-full backdrop-blur-sm">View Design</span>
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          <div className="mt-8 text-center md:hidden">
+            <button className="text-sm font-medium border-b border-rose-300 pb-1">Lihat Instagram Kami</button>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section id="ulasan" className="py-20 bg-rose-50/50">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900">Kata Mereka</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {reviews.map((review, idx) => (
+              <div key={idx} className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                <div className="flex gap-1 mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} size={16} className={`${i < review.rating ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}`} />
+                  ))}
+                </div>
+                <p className="text-gray-700 italic mb-6">"{review.comment}"</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-rose-100 flex items-center justify-center text-rose-600 font-bold">
+                    {review.name.charAt(0)}
+                  </div>
+                  <span className="font-semibold text-gray-900">{review.name}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Booking Banner */}
+      <section className="py-20">
+        <div className="container mx-auto px-6">
+          <div className="bg-rose-500 rounded-3xl p-10 md:p-16 text-center text-white relative overflow-hidden shadow-2xl shadow-rose-200">
+            <div className="relative z-10">
+              <h2 className="text-3xl md:text-5xl font-serif font-bold mb-6">Siap untuk Kuku yang Cantik?</h2>
+              <p className="text-rose-100 text-lg mb-8 max-w-2xl mx-auto">Slot terbatas setiap harinya. Segera reservasi untuk mendapatkan jadwal yang Anda inginkan.</p>
+              <div className="flex flex-col md:flex-row justify-center gap-4">
+                <button className="px-8 py-4 bg-white text-rose-600 rounded-full font-bold text-lg hover:bg-gray-100 transition-colors shadow-lg">
+                  Reservasi via WhatsApp
+                </button>
+                <button className="px-8 py-4 bg-transparent border-2 border-white text-white rounded-full font-bold text-lg hover:bg-white/10 transition-colors">
+                  Lihat Lokasi Studio
+                </button>
+              </div>
+            </div>
+            
+            {/* Decor circles */}
+            <div className="absolute top-0 left-0 -ml-16 -mt-16 w-64 h-64 rounded-full bg-white opacity-10"></div>
+            <div className="absolute bottom-0 right-0 -mr-16 -mb-16 w-64 h-64 rounded-full bg-white opacity-10"></div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-gray-300 py-12 border-t border-gray-800">
+        <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
+          <div className="col-span-1 md:col-span-1">
+            <div className="text-2xl font-serif font-bold text-white mb-4">
+              Lumina<span className="text-rose-500">.</span>
+            </div>
+            <p className="text-gray-400 text-sm leading-relaxed">
+              Studio nail art yang mengutamakan kesehatan kuku dan keindahan seni di setiap detailnya.
+            </p>
+          </div>
+          
+          <div>
+            <h4 className="text-white font-bold mb-4 uppercase tracking-wider text-sm">Layanan</h4>
+            <ul className="space-y-2 text-sm">
+              <li><a href="#" className="hover:text-rose-400 transition-colors">Manicure & Pedicure</a></li>
+              <li><a href="#" className="hover:text-rose-400 transition-colors">Gel Polish</a></li>
+              <li><a href="#" className="hover:text-rose-400 transition-colors">Nail Extensions</a></li>
+              <li><a href="#" className="hover:text-rose-400 transition-colors">Wedding Nails</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-white font-bold mb-4 uppercase tracking-wider text-sm">Kontak</h4>
+            <ul className="space-y-3 text-sm">
+              <li className="flex items-start gap-3">
+                <MapPin size={18} className="text-rose-500 mt-0.5" />
+                <span>Jl. Senopati No. 123, Jakarta Selatan</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Phone size={18} className="text-rose-500" />
+                <span>+62 812 3456 7890</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <Instagram size={18} className="text-rose-500" />
+                <span>@lumina.nails</span>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-white font-bold mb-4 uppercase tracking-wider text-sm">Jam Operasional</h4>
+            <ul className="space-y-2 text-sm">
+              <li className="flex justify-between"><span>Senin - Jumat</span> <span>10:00 - 20:00</span></li>
+              <li className="flex justify-between text-rose-400"><span>Sabtu - Minggu</span> <span>09:00 - 21:00</span></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div className="container mx-auto px-6 mt-12 pt-8 border-t border-gray-800 text-center text-xs text-gray-500">
+          &copy; {new Date().getFullYear()} Lumina Nail Art Studio. All rights reserved.
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default App;
