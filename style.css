@@ -1,59 +1,114 @@
 body {
-    background-color: #fffaf5; /* putih hangat */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
     color: #333;
 }
-
-/* Header */
 header {
-    background: linear-gradient(135deg, #8b0000, #d4af37);
+    background-color: #ff69b4;
+    color: white;
     text-align: center;
-    padding: 45px 20px;
-    color: white;
+    padding: 50px 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
-
 header h1 {
-    font-size: 40px;
-    letter-spacing: 1px;
+    margin: 0;
+    font-size: 3em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
-
-/* Navbar */
-nav a {
-    color: #8b0000;
-    font-weight: 600;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
-
-nav a:hover {
-    color: #d4af37;
+.section {
+    margin-bottom: 40px;
 }
-
-/* Section Title */
-section h2 {
-    color: #8b0000;
+.section h2 {
+    text-align: center;
+    color: #ff69b4;
+    font-size: 2em;
 }
-
-/* Card */
-.card {
+.nail-art-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+.nail-art-item {
     background: white;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    width: 300px;
+    transition: transform 0.3s;
 }
-
-/* Services */
-ul li {
-    background-color: #f5e6c8; /* gold soft */
+.nail-art-item:hover {
+    transform: scale(1.05);
 }
-
-/* Button */
-button {
-    background: linear-gradient(135deg, #8b0000, #d4af37);
+.nail-art-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.nail-art-item h3 {
+    padding: 15px;
+    margin: 0;
+    font-size: 1.5em;
+    color: #ff69b4;
+}
+.nail-art-item p {
+    padding: 0 15px 15px;
+    margin: 0;
+}
+.contact {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+}
+.contact h2 {
+    color: #ff69b4;
+    margin-bottom: 20px;
+}
+.contact p {
+    margin: 10px 0;
+    font-size: 1.1em;
+}
+.booking-btn {
+    display: inline-block;
+    background-color: #25d366; /* Warna hijau WhatsApp */
     color: white;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-top: 20px;
+    transition: background-color 0.3s;
 }
-
-button:hover {
-    background: linear-gradient(135deg, #6e0000, #b8962e);
+.booking-btn:hover {
+    background-color: #128c7e; /* Warna hijau gelap saat hover */
 }
-
-/* Footer */
 footer {
-    background-color: #8b0000;
-    color: #d4af37;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+@media (max-width: 768px) {
+    .nail-art-gallery {
+        flex-direction: column;
+        align-items: center;
+    }
+    .nail-art-item {
+        width: 90%;
+    }
+    .booking-btn {
+        padding: 12px 25px;
+        font-size: 1em;
+    }
 }
