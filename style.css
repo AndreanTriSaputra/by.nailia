@@ -4,10 +4,19 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     background: #fff;
     color: #333;
+}
+
+/* Biar section gak ketutup navbar sticky pas di-scroll via link nav */
+section {
+    scroll-margin-top: 90px;
 }
 
 /* NAVBAR */
@@ -20,6 +29,8 @@ body {
     position: sticky;
     top: 0;
     z-index: 100;
+    flex-wrap: wrap;
+    gap: 12px;
 }
 
 .logo {
@@ -90,6 +101,7 @@ body {
 .hero-btn {
     display: flex;
     gap: 15px;
+    flex-wrap: wrap;
 }
 
 .btn-outline {
@@ -177,6 +189,11 @@ body {
     margin-bottom: 20px;
 }
 
+.jam-operasional {
+    color: #d4af37;
+    font-weight: 500;
+}
+
 .contact a {
     display: block;
     color: #d4af37;
@@ -192,4 +209,64 @@ body {
     font-size: 13px;
     opacity: 0.8;
     margin-top: 30px;
+}
+
+/* ===== RESPONSIVE: TABLET & MOBILE ===== */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+        padding: 16px 6%;
+    }
+
+    .navbar nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .navbar nav a {
+        margin: 0 8px;
+        font-size: 14px;
+    }
+
+    .hero {
+        min-height: 80vh;
+        padding: 0 6%;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .hero-btn {
+        justify-content: center;
+    }
+
+    .section {
+        padding: 60px 6%;
+    }
+
+    .section h2 {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 420px) {
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .btn-gold,
+    .btn-outline {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
 }
