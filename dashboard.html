@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Admin | by.nailia</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{ --gold:#d4af37; --maroon:#8b0000; --bg:#fff8ee; --card:#ffffff; --text:#333; }
+  *{box-sizing:border-box;}
+  body{margin:0; font-family:'Poppins',sans-serif; background:var(--bg); color:var(--text);}
+  header{padding:20px 8%; background:var(--maroon); color:#fff; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:.5rem;}
+  header h1{font-family:'Playfair Display',serif; font-size:1.4rem; margin:0;}
+  header h1 span{color:var(--gold);}
+  header a, header button{color:var(--gold); text-decoration:none; font-size:.9rem; background:none; border:1px solid var(--gold); border-radius:30px; padding:.4rem .9rem; cursor:pointer; font-weight:600;}
+  main{max-width:960px; margin:0 auto; padding:2rem 1.5rem;}
+
+  #gate{max-width:360px; margin:4rem auto; text-align:center; padding:0 1rem;}
+  #gate h1{color:var(--maroon);}
+  #gate input{width:100%; padding:.8rem 1rem; border-radius:8px; border:1px solid var(--gold); margin-bottom:1rem; font-size:1rem;}
+  #gate button{width:100%; padding:.8rem; border:none; border-radius:30px; background:var(--gold); color:var(--maroon); font-weight:600; cursor:pointer;}
+  #gate p.note{font-size:.8rem; opacity:.6; margin-top:1rem;}
+
+  .cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:1rem; margin-bottom:2rem;}
+  .card{background:var(--card); border-radius:20px; padding:1.3rem; box-shadow:0 10px 30px rgba(0,0,0,.1);}
+  .card .num{font-family:'Playfair Display',serif; font-size:2rem; color:var(--maroon); font-weight:700;}
+  .card .label{font-size:.85rem; opacity:.7;}
+
+  section.block{background:var(--card); border-radius:20px; padding:1.3rem; margin-bottom:1.5rem; box-shadow:0 10px 30px rgba(0,0,0,.1);}
+  section.block h2{font-family:'Playfair Display',serif; font-size:1.1rem; margin-top:0; display:flex; justify-content:space-between; align-items:center; color:var(--maroon);}
+
+  .bar-row{display:flex; align-items:center; gap:.8rem; margin-bottom:.7rem; font-size:.85rem;}
+  .bar-row .bar-label{width:150px; flex-shrink:0;}
+  .bar-track{flex:1; background:#fff0d9; border-radius:6px; height:14px; overflow:hidden;}
+  .bar-fill{height:100%; background:var(--gold); border-radius:6px;}
+  .bar-count{width:24px; text-align:right; flex-shrink:0;}
+
+  table{width:100%; border-collapse:collapse; font-size:.82rem;}
+  th,td{text-align:left; padding:.6rem .5rem; border-bottom:1px solid #fff0d9; white-space:nowrap;}
+  th{opacity:.6; font-weight:600;}
+  .table-wrap{overflow-x:auto;}
+  .empty, .loading{opacity:.6; font-size:.9rem; padding:1rem 0;}
+  .error{color:#b33; font-size:.9rem;}
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <h1 style="font-family:'Playfair Display',serif;">Dashboard <span style="color:var(--gold)">Admin</span></h1>
+  <input type="password" id="pass" placeholder="Masukkan kode akses">
+  <button onclick="checkPass()">Masuk</button>
+  <p class="note">Ini bukan sistem keamanan sungguhan, hanya penghalang ringan. Data reservasi diambil langsung dari Google Sheets secara real-time.</p>
+</div>
+
+<div id="app" style="display:none;">
+  <header>
+    <h1>by<span>.nailia</span> — Dashboard</h1>
+    <div style="display:flex; gap:.5rem;">
+      <button onclick="loadData()">↻ Refresh</button>
+      <a href="index.html">← Kembali</a>
+    </div>
+  </header>
+  <main>
+    <div id="statusMsg" class="loading">Memuat data...</div>
+    <div id="content" style="display:none;">
+      <div class="cards">
+        <div class="card"><div class="num" id="statTotal">0</div><div class="label">Total Reservasi</div></div>
+        <div class="card"><div class="num" id="statToday">0</div><div class="label">Reservasi Hari Ini</div></div>
+        <div class="card"><div class="num" id="statUpcoming">0</div><div class="label">Akan Datang</div></div>
+        <div class="card"><div class="num" id="statTop">–</div><div class="label">Layanan Terpopuler</div></div>
+      </div>
+
+      <section class="block">
+        <h2>Reservasi per Layanan</h2>
+        <div id="barChart"></div>
+      </section>
+
+      <section class="block">
+        <h2>Semua Reservasi</h2>
+        <div class="table-wrap" id="tableWrap"></div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<script>
+  // GANTI link ini dengan link "Publish to web" (format .../pub?...&output=csv) dari Google Sheets kamu
+  // Sementara pakai link export biasa dulu; ganti kalau ada masalah CORS.
+  const CSV_URL = "https://docs.google.com/spreadsheets/d/1kZQFmmkobd7tAfBpP38CMum71wAs4gg6Lz7ItfNuyZo/export?format=csv&gid=0";
+  const ACCESS_CODE = "nailia2026"; // ganti sesuai keinginan
+
+  function checkPass(){
+    const val = document.getElementById('pass').value;
+    if(val === ACCESS_CODE){
+      sessionStorage.setItem('nailiaAdminOK','1');
+      showApp();
+    } else {
+      alert('Kode salah.');
+    }
+  }
+  document.getElementById('pass').addEventListener('keydown', e => { if(e.key==='Enter') checkPass(); });
+
+  // parser CSV sederhana yang menangani tanda kutip
+  function parseCSV(text){
+    const rows = [];
+    let row = [], field = '', inQuotes = false;
+    for(let i=0; i<text.length; i++){
+      const c = text[i], next = text[i+1];
+      if(inQuotes){
+        if(c === '"' && next === '"'){ field += '"'; i++; }
+        else if(c === '"'){ inQuotes = false; }
+        else field += c;
+      } else {
+        if(c === '"') inQuotes = true;
+        else if(c === ','){ row.push(field); field = ''; }
+        else if(c === '\n'){ row.push(field); rows.push(row); row = []; field = ''; }
+        else if(c === '\r'){ /* skip */ }
+        else field += c;
+      }
+    }
+    if(field.length || row.length){ row.push(field); rows.push(row); }
+    return rows.filter(r => r.some(v => v.trim() !== ''));
+  }
+
+  function toISODate(str){
+    // coba parse beberapa format umum jadi YYYY-MM-DD; kalau sudah ISO, biarkan
+    if(!str) return '';
+    str = str.trim();
+    if(/^\d{4}-\d{2}-\d{2}/.test(str)) return str.slice(0,10);
+    const parts = str.split(/[\/\-]/);
+    if(parts.length === 3){
+      // asumsikan DD/MM/YYYY kalau bukan format ISO
+      let [d,m,y] = parts;
+      if(y.length === 4) return `${y}-${m.padStart(2,'0')}-${d.padStart(2,'0')}`;
+    }
+    return str;
+  }
+
+  async function loadData(){
+    const statusEl = document.getElementById('statusMsg');
+    const contentEl = document.getElementById('content');
+    contentEl.style.display = 'none';
+    statusEl.style.display = 'block';
+    statusEl.className = 'loading';
+    statusEl.textContent = 'Memuat data...';
+
+    try{
+      const res = await fetch(CSV_URL + '&t=' + Date.now());
+      if(!res.ok) throw new Error('HTTP ' + res.status);
+      const text = await res.text();
+      const rows = parseCSV(text);
+      const header = rows.shift().map(h => h.trim());
+
+      const data = rows.map(r => {
+        const obj = {};
+        header.forEach((h,i) => obj[h] = (r[i] || '').trim());
+        return obj;
+      }).filter(d => d['Nama']);
+
+      render(data, header);
+      statusEl.style.display = 'none';
+      contentEl.style.display = 'block';
+    } catch(err){
+      statusEl.className = 'error';
+      statusEl.textContent = 'Gagal memuat data: ' + err.message + '. Pastikan sheet sudah di-publish sebagai CSV publik.';
+    }
+  }
+
+  function render(data, header){
+    const today = new Date().toISOString().slice(0,10);
+    const withISO = data.map(d => ({...d, _tgl: toISODate(d['Tanggal Booking'])}));
+
+    document.getElementById('statTotal').textContent = data.length;
+    document.getElementById('statToday').textContent = withISO.filter(r => r._tgl === today).length;
+    document.getElementById('statUpcoming').textContent = withISO.filter(r => r._tgl >= today).length;
+
+    const counts = {};
+    data.forEach(r => { const l = r['Layanan'] || '(kosong)'; counts[l] = (counts[l]||0)+1; });
+    const layananList = Object.entries(counts).sort((a,b)=>b[1]-a[1]);
+    document.getElementById('statTop').textContent = layananList[0] ? layananList[0][0] : '–';
+
+    const maxCount = Math.max(1, ...layananList.map(l=>l[1]));
+    document.getElementById('barChart').innerHTML = layananList.length ? layananList.map(([name,count]) => `
+      <div class="bar-row">
+        <div class="bar-label">${name}</div>
+        <div class="bar-track"><div class="bar-fill" style="width:${(count/maxCount*100)}%"></div></div>
+        <div class="bar-count">${count}</div>
+      </div>
+    `).join('') : '<p class="empty">Belum ada data.</p>';
+
+    const sorted = [...withISO].sort((a,b) => (b._tgl||'').localeCompare(a._tgl||''));
+    document.getElementById('tableWrap').innerHTML = sorted.length ? `
+      <table>
+        <thead><tr>${header.map(h=>`<th>${h}</th>`).join('')}</tr></thead>
+        <tbody>
+          ${sorted.map(r => `<tr>${header.map(h=>`<td>${(r[h]||'').replace(/</g,'&lt;')}</td>`).join('')}</tr>`).join('')}
+        </tbody>
+      </table>
+    ` : '<p class="empty">Belum ada reservasi masuk.</p>';
+  }
+
+  function showApp(){
+    document.getElementById('gate').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    loadData();
+  }
+
+  if(sessionStorage.getItem('nailiaAdminOK') === '1'){ showApp(); }
+</script>
+
+</body>
+</html>
