@@ -188,7 +188,11 @@
       </div>
     `).join('') : '<p class="empty">Belum ada data.</p>';
 
-    const sorted = [...withISO].sort((a,b) => (b._tgl||'').localeCompare(a._tgl||''));
+    const sorted = [...withISO].sort((a,b) => {
+      const aKey = (a._tgl||'') + ' ' + (a['Jam']||'00:00');
+      const bKey = (b._tgl||'') + ' ' + (b['Jam']||'00:00');
+      return aKey.localeCompare(bKey);
+    });
     document.getElementById('tableWrap').innerHTML = sorted.length ? `
       <table>
         <thead><tr>${header.map(h=>`<th>${h}</th>`).join('')}</tr></thead>
