@@ -41,6 +41,12 @@
   .table-wrap{overflow-x:auto;}
   .empty, .loading{opacity:.6; font-size:.9rem; padding:1rem 0;}
   .error{color:#b33; font-size:.9rem;}
+
+  .filter-row{display:flex; gap:.6rem; flex-wrap:wrap; margin-bottom:1rem;}
+  .filter-row select{
+    padding:.5rem .8rem; border-radius:30px; border:1px solid var(--gold);
+    background:#fff; color:var(--text); font-family:'Poppins',sans-serif; font-size:.85rem; cursor:pointer;
+  }
 </style>
 </head>
 <body>
@@ -77,6 +83,26 @@
 
       <section class="block">
         <h2>Semua Reservasi</h2>
+        <div class="filter-row">
+          <select id="filterBulan" onchange="onMonthChange()">
+            <option value="">Semua Bulan</option>
+            <option value="01">Januari</option>
+            <option value="02">Februari</option>
+            <option value="03">Maret</option>
+            <option value="04">April</option>
+            <option value="05">Mei</option>
+            <option value="06">Juni</option>
+            <option value="07">Juli</option>
+            <option value="08">Agustus</option>
+            <option value="09">September</option>
+            <option value="10">Oktober</option>
+            <option value="11">November</option>
+            <option value="12">Desember</option>
+          </select>
+          <select id="filterTanggal" onchange="renderTable()">
+            <option value="">Semua Tanggal</option>
+          </select>
+        </div>
         <div class="table-wrap" id="tableWrap"></div>
       </section>
     </div>
@@ -166,9 +192,13 @@
     }
   }
 
+  let currentData = [], currentHeader = [];
+
   function render(data, header){
     const today = new Date().toISOString().slice(0,10);
     const withISO = data.map(d => ({...d, _tgl: toISODate(d['Tanggal Booking'])}));
+    currentData = withISO;
+    currentHeader = header;
 
     document.getElementById('statTotal').textContent = data.length;
     document.getElementById('statToday').textContent = withISO.filter(r => r._tgl === today).length;
@@ -188,11 +218,42 @@
       </div>
     `).join('') : '<p class="empty">Belum ada data.</p>';
 
-    const sorted = [...withISO].sort((a,b) => {
+    renderTable();
+  }
+
+  function onMonthChange(){
+    // waktu ganti bulan, reset filter tanggal & isi ulang opsinya sesuai tanggal yang ada di bulan itu
+    const bulan = document.getElementById('filterBulan').value;
+    const dateSelect = document.getElementById('filterTanggal');
+
+    const tanggalTersedia = [...new Set(
+      currentData
+        .filter(r => !bulan || (r._tgl || '').slice(5,7) === bulan)
+        .map(r => r._tgl)
+        .filter(Boolean)
+    )].sort();
+
+    dateSelect.innerHTML = '<option value="">Semua Tanggal</option>' +
+      tanggalTersedia.map(t => `<option value="${t}">${t}</option>`).join('');
+
+    renderTable();
+  }
+
+  function renderTable(){
+    const bulan = document.getElementById('filterBulan').value;
+    const tanggal = document.getElementById('filterTanggal').value;
+    const header = currentHeader;
+
+    let filtered = currentData;
+    if(bulan) filtered = filtered.filter(r => (r._tgl || '').slice(5,7) === bulan);
+    if(tanggal) filtered = filtered.filter(r => r._tgl === tanggal);
+
+    const sorted = [...filtered].sort((a,b) => {
       const aKey = (a._tgl||'') + ' ' + (a['Jam']||'00:00');
       const bKey = (b._tgl||'') + ' ' + (b['Jam']||'00:00');
       return aKey.localeCompare(bKey);
     });
+
     document.getElementById('tableWrap').innerHTML = sorted.length ? `
       <table>
         <thead><tr>${header.map(h=>`<th>${h}</th>`).join('')}</tr></thead>
@@ -200,7 +261,7 @@
           ${sorted.map(r => `<tr>${header.map(h=>`<td>${(r[h]||'').replace(/</g,'&lt;')}</td>`).join('')}</tr>`).join('')}
         </tbody>
       </table>
-    ` : '<p class="empty">Belum ada reservasi masuk.</p>';
+    ` : '<p class="empty">Tidak ada reservasi untuk filter ini.</p>';
   }
 
   function showApp(){
